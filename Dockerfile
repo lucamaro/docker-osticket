@@ -1,5 +1,5 @@
-FROM php:7.0-fpm-alpine
-MAINTAINER Martin Campbell <martin@campbellsoftware.co.uk>
+FROM php:5-fpm-alpine
+LABEL mantainer="luca.maragnani@gmail.com"
 
 # setup workdir
 RUN mkdir /data
@@ -28,7 +28,7 @@ RUN apk add --update \
     docker-php-ext-install gd curl ldap mysqli sockets gettext mbstring xml intl opcache && \
     docker-php-ext-configure imap --with-imap-ssl && \
     docker-php-ext-install imap && \
-    pecl install apcu && docker-php-ext-enable apcu && \
+    pecl install channel://pecl.php.net/APCu-4.0.10 && docker-php-ext-enable apcu && \
     apk del imap-dev libpng-dev curl-dev openldap-dev gettext-dev libxml2-dev icu-dev autoconf g++ make pcre-dev && \
     rm -rf /var/cache/apk/*
 
