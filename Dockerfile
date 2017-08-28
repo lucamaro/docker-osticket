@@ -67,6 +67,8 @@ COPY php.ini $PHP_INI_DIR/php.ini
 
 COPY bin/ /data/bin
 
-VOLUME ["/data/upload/include/plugins","/data/upload/include/i18n","/var/log/nginx"]
+RUN mkdir /attachments && chown www-data:www-data /attachments
+
+VOLUME ["/data/upload/include/plugins","/data/upload/include/i18n","/var/log/nginx","/attachments"]
 EXPOSE 80
 CMD ["/data/bin/start.sh"]
