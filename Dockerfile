@@ -53,7 +53,8 @@ RUN apk add --update \
     mv upload/include/i18n upload/include/i18n.dist && \
 	\
     # Download LDAP plugin
-    wget -nv -O upload/include/plugins/auth-ldap.phar http://osticket.com/sites/default/files/download/plugin/auth-ldap.phar 
+    wget -nv -O upload/include/plugins/auth-ldap.phar http://osticket.com/sites/default/files/download/plugin/auth-ldap.phar && \
+    wget -nv -O upload/include/plugins/storage-fs.phar http://osticket.com/sites/default/files/download/plugin/storage-fs.phar
 
 # Configure nginx, PHP, msmtp and supervisor
 COPY nginx.conf /etc/nginx/nginx.conf
