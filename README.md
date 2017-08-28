@@ -15,6 +15,7 @@ It has a few modifications:
   * Now designed to work with a linked [MySQL](https://registry.hub.docker.com/u/library/mysql/) docker container.
   * Automates configuration file & database installation
   * EMail support 
+  * only SSL enabled
 
 OSTicket is being served by [nginx](http://wiki.nginx.org/Main) using [PHP-FPM](http://php-fpm.org/) with PHP7. 
 PHP7's [mail](http://php.net/manual/en/function.mail.php) function is configured to use [msmtp](http://msmtp.sourceforge.net/) to send out-going messages.
@@ -34,8 +35,13 @@ docker run --name osticket_mysql -d -e MYSQL_ROOT_PASSWORD=secret -e MYSQL_USER=
 Now run this image and link the MySQL container.
 
 ```bash
-docker run --name osticket -d --link osticket_mysql:mysql -p 8080:80 campbellsoftwaresolutions/osticket
+docker run --name osticket -d --link osticket_mysql:mysql -p 8443:443 -v /path/to/cert:/cert  campbellsoftwaresolutions/osticket
 ```
+
+`cert` folder must contain two files: `certificate.key` and `certificate.crt`. To quickly generate selfsigned certificates:
+
+    mkdir cert
+    openssl req -x509 -newkey rsa:4096 -keyout certificate.key -out certificate.crt -days 365 -nodes
 
 Wait for the installation to complete then browse to your OSTicket staff control panel at `http://localhost:8080/scp/`. Login with default admin user & password:
 
