@@ -70,5 +70,5 @@ COPY bin/ /data/bin
 RUN mkdir /attachments && chown www-data:www-data /attachments
 
 VOLUME ["/data/upload/include/plugins","/data/upload/include/i18n","/var/log/nginx","/attachments"]
-EXPOSE 80
+EXPOSE 443
 CMD ["/data/bin/start.sh"]
