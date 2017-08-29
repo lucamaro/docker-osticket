@@ -29,6 +29,7 @@ RUN apk add --update \
     docker-php-ext-configure imap --with-imap-ssl && \
     docker-php-ext-install imap && \
     pecl install channel://pecl.php.net/APCu-4.0.10 && docker-php-ext-enable apcu && \
+    pear install Net_LDAP2 && \
     apk del imap-dev libpng-dev curl-dev openldap-dev gettext-dev libxml2-dev icu-dev autoconf g++ make pcre-dev && \
     rm -rf /var/cache/apk/* && \	
 	\
