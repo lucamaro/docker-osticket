@@ -35,13 +35,13 @@ docker run --name osticket_mysql -d -e MYSQL_ROOT_PASSWORD=secret -e MYSQL_USER=
 Now run this image and link the MySQL container.
 
 ```bash
-docker run --name osticket -d --link osticket_mysql:mysql -p 8443:443 -v /path/to/cert:/cert  lucamaro/osticket
+docker run --name osticket -d --link osticket_mysql:mysql -p 8443:443 -v /path/to/cert:/cert  lucamaro/docker-osticket
 ```
 
 `cert` folder must contain two files: `certificate.key` and `certificate.crt`. To quickly generate selfsigned certificates:
 
     mkdir cert
-    openssl req -x509 -newkey rsa:4096 -keyout certificate.key -out certificate.crt -days 365 -nodes
+    openssl req -x509 -newkey rsa:4096 -keyout cert/certificate.key -out cert/certificate.crt -days 365 -nodes
 
 Wait for the installation to complete then browse to your OSTicket staff control panel at `http://localhost:8443/scp/`. Login with default admin user & password:
 
